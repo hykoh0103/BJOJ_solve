@@ -1,0 +1,32 @@
+def f_power(num):
+    for i in range(6):
+        if num / pow(10, i) < 1:
+            return i
+
+def f_separate(n):
+    ans = []
+    while n > 0:
+        temp = int(n%10)
+        ans.insert(0, temp)
+        n = int((n - temp) / 10) #int() 추가해서 name-error 해결
+        
+    while len(ans) != 6:
+        ans.insert(0, 0)   
+    return ans
+        
+
+num = int(input())
+p = f_power(num)
+target = num - 9 * p
+
+while target < num:
+    temp = f_separate(target)
+    ans = target + temp[0] + temp[1] + temp[2] + temp[3] + temp[4] + temp[5]
+
+    if ans == num:
+        print(target)
+        break
+    else:
+        target += 1
+        if target == num:
+            print(0)
